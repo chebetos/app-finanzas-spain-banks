@@ -1,0 +1,98 @@
+// // For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// // README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node-postgres
+// {
+// 	"name": "Node.js & PostgreSQL",
+// 	"dockerComposeFile": "docker-compose.yml",
+// 	"service": "app",
+// 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+// 	"features": {
+// 		"ghcr.io/devcontainers/features/node:1": {
+// 			"nodeGypDependencies": true,
+// 			"version": "lts",
+// 			"pnpmVersion": "latest",
+// 			"nvmVersion": "latest"
+// 		}
+// 	}
+
+// 	// Features to add to the dev container. More info: https://containers.dev/features.
+// 	// "features": {},
+
+// 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+// 	// This can be used to network with other containers or with the host.
+// 	// "forwardPorts": [3000, 5432],
+
+// 	// Use 'postCreateCommand' to run commands after the container is created.
+// 	// "postCreateCommand": "yarn install",
+
+// 	// Configure tool-specific properties.
+// 	// "customizations": {},
+
+// 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+// 	// "remoteUser": "root"
+// }
+{
+  "name": "T3 App Development",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22",
+      "pnpmVersion": "latest",
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {},
+    "ghcr.io/devcontainers/features/postgresql:1": {
+      "version": "15",
+      "pgAdmin": true
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "prisma.prisma",
+        "ms-azuretools.vscode-docker",
+        "github.copilot",
+        "github.copilot-chat",
+        "formulahendry.auto-rename-tag",
+        "streetsidesoftware.code-spell-checker",
+        "mikestead.dotenv",
+        "dsznajder.es7-react-js-snippets",
+        "yoavbls.pretty-ts-errors",
+        "styled-components.vscode-styled-components",
+        "wayou.vscode-todo-highlight",
+        "orta.vscode-jest",
+        "zixuanchen.vitest-explorer"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "typescript.enablePromptUseWorkspaceTsdk": true,
+        "[prisma]": {
+          "editor.defaultFormatter": "Prisma.prisma"
+        }
+      }
+    }
+  },
+
+  "forwardPorts": [3000, 5432],
+
+  "postCreateCommand": "pnpm add -g typescript ts-node @prisma/cli && pnpm install",
+
+  "remoteUser": "node",
+
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+  ]
+}
