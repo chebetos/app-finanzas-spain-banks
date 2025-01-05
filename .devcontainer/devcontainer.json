@@ -44,11 +44,7 @@
     },
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers-contrib/features/pnpm:2": {},
-    "ghcr.io/devcontainers/features/postgresql:1": {
-      "version": "15",
-      "pgAdmin": true
-    }
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
   },
 
   "customizations": {
